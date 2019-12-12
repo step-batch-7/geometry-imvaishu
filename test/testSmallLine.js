@@ -1,7 +1,7 @@
 const assert = require("assert");
-Line = require("../src/smallLine.js");
+Line = require("../src/line.js");
 
-describe("CLass", function() {
+describe("Line", function() {
   it("should return toString", function() {
     let actualValue = new Line(1, 3, 4, 9);
     actualValue = actualValue.toString();
@@ -9,3 +9,8 @@ describe("CLass", function() {
     assert.deepStrictEqual(actualValue, expectedValue);
   });
 });
+
+// describe("Line",function(){
+//     it("should compare objects are equal or not",function(){
+
+// });
