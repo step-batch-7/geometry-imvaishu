@@ -55,4 +55,11 @@ describe("length", function() {
     const expectedLength = 11.40175425099138;
     assert.strictEqual(actualLength, expectedLength);
   });
+
+  it("should calculate length of line segment if points are positive and length is floored", function() {
+    const line = new Line({ x: 1, y: 6 }, { x: 4, y: 10 });
+    const actualLength = line.length;
+    const expectedLength = 5;
+    assert.strictEqual(actualLength, expectedLength);
+  });
 });
