@@ -1,4 +1,5 @@
-const assert = require("assert");
+const chai = require("chai");
+const assert = chai.assert;
 Line = require("../src/line.js");
 
 describe("Line", function() {
@@ -103,16 +104,22 @@ describe("slope", function() {
   it("should calculate slope of line if all points are zero ", function() {
     const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
     const actualSlope = line.slope;
-    const expectedSlope = NaN;
-    assert.strictEqual(actualSlope, expectedSlope);
+    assert.isNaN(actualSlope);
   });
 });
 
 describe("isParallelTo", function() {
-  it("should return if two lines are parallel", function() {
+  it("should return true if two lines are parallel", function() {
     const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
     const other = new Line({ x: 9, y: 11 }, { x: 4, y: 1 });
 
     assert.strictEqual(line.isParallelTo(other), true);
+  });
+
+  it("should return false if two lines are not parallel", function() {
+    const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
+    const other = new Line({ x: 9, y: 11 }, { x: 4, y: 1 });
+
+    assert.strictEqual(line.isParallelTo(other), false);
   });
 });
