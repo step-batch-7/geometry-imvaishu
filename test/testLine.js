@@ -39,3 +39,13 @@ describe("isEqualTO", function() {
     assert.strictEqual(line.isEqualTo(other), false);
   });
 });
+
+describe("length", function() {
+  it("should calculate length of line segment if points are positive integer", function() {
+    const line = new Line({ x: 1, y: 6 }, { x: 6, y: 15 });
+    const actualLength = line.length;
+    const expectedLength = 10.295630140987;
+
+    assert.strictEqual(actualLength, expectedLength);
+  });
+});
