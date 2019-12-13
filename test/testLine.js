@@ -132,7 +132,7 @@ describe("isParallelTo", function() {
 
   it("should return false if one is not line", function() {
     const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
-    const other = { endA: { x: 1, y: 4 }, endB: { x: 3, y: 9 } };
+    const other = { endA: { x: 2, y: 3 }, endB: { x: 5, y: 7 } };
 
     assert.strictEqual(line.isParallelTo(other), false);
   });

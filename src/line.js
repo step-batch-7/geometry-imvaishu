@@ -23,9 +23,9 @@ class Line {
   }
 
   get length() {
-    const distance =
-      (this.endB.x - this.endA.x) ** 2 + (this.endB.y - this.endA.y) ** 2;
-    return Math.sqrt(distance);
+    return Math.sqrt(
+      (this.endB.x - this.endA.x) ** 2 + (this.endB.y - this.endA.y) ** 2
+    );
   }
 
   get slope() {
@@ -35,7 +35,7 @@ class Line {
   }
 
   isParallelTo(other) {
-    return this.slope == other.slope;
+    return other instanceof Line && this.slope == other.slope;
   }
 }
 
