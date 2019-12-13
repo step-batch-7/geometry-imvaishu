@@ -48,4 +48,11 @@ describe("length", function() {
 
     assert.strictEqual(actualLength, expectedLength);
   });
+
+  it("should calculate length of line segment if points are negative integer", function() {
+    const line = new Line({ x: 1, y: -3 }, { x: -6, y: 6 });
+    const actualLength = line.length;
+    const expectedLength = 11.40175425099138;
+    assert.strictEqual(actualLength, expectedLength);
+  });
 });
