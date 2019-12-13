@@ -122,4 +122,32 @@ describe("isParallelTo", function() {
 
     assert.strictEqual(line.isParallelTo(other), false);
   });
+
+  it("should return true if two lines are equal", function() {
+    const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
+    const other = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
+
+    assert.strictEqual(line.isParallelTo(other), true);
+  });
+
+  it("should return false if one is not line", function() {
+    const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
+    const other = { endA: { x: 1, y: 4 }, endB: { x: 3, y: 9 } };
+
+    assert.strictEqual(line.isParallelTo(other), false);
+  });
+
+  it("should return true if lines are vertical", function() {
+    const line = new Line({ x: 4, y: 0 }, { x: 4, y: 5 });
+    const other = new Line({ x: 5, y: 0 }, { x: 5, y: 5 });
+
+    assert.strictEqual(line.isParallelTo(other), true);
+  });
+
+  it("should return true if lines are horizontal", function() {
+    const line = new Line({ x: 4, y: 3 }, { x: 10, y: 3 });
+    const other = new Line({ x: 5, y: 4 }, { x: 15, y: 4 });
+
+    assert.strictEqual(line.isParallelTo(other), true);
+  });
 });
