@@ -27,6 +27,12 @@ class Line {
       (this.endB.x - this.endA.x) ** 2 + (this.endB.y - this.endA.y) ** 2;
     return Math.sqrt(distance);
   }
+
+  get slope() {
+    const yCoordinatePointsDist = this.endB.y - this.endA.y;
+    const xCoordinatePointsDist = this.endB.x - this.endA.x;
+    return yCoordinatePointsDist / xCoordinatePointsDist;
+  }
 }
 
 module.exports = Line;

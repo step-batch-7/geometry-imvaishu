@@ -62,4 +62,27 @@ describe("length", function() {
     const expectedLength = 5;
     assert.strictEqual(actualLength, expectedLength);
   });
+
+  it("should calculate length of line segment if points are zero", function() {
+    const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
+    const actualLength = line.length;
+    const expectedLength = 0;
+    assert.strictEqual(actualLength, expectedLength);
+  });
+});
+
+describe("slope", function() {
+  it("should calculate slope of line if points are positive integer", function() {
+    const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+    const actualSlope = line.slope;
+    const expectedSlope = 2;
+    assert.strictEqual(actualSlope, expectedSlope);
+  });
+
+  it("should calculate slope of line if points are negative integer", function() {
+    const line = new Line({ x: -2, y: -4 }, { x: 1, y: 5 });
+    const actualSlope = line.slope;
+    const expectedSlope = 3;
+    assert.strictEqual(actualSlope, expectedSlope);
+  });
 });
