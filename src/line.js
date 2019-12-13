@@ -14,11 +14,11 @@ class Line {
     return `Line (${this.endA.x},${this.endA.y}) (${this.endB.x},${this.endB.y})`;
   }
 
-  isEqualTo(otherLine) {
+  isEqualTo(other) {
     return (
-      otherLine instanceof Line &&
-      arePointsEqual(this.endA, otherLine.endA) &&
-      arePointsEqual(this.endB, otherLine.endB)
+      other instanceof Line &&
+      arePointsEqual(this.endA, other.endA) &&
+      arePointsEqual(this.endB, other.endB)
     );
   }
 }

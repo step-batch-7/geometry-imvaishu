@@ -13,29 +13,29 @@ describe("Line", function() {
 describe("isEqualTO", function() {
   it("should return true if lines are equal ", function() {
     const line = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
-    const otherLine = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
+    const other = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
 
-    assert.strictEqual(line.isEqualTo(otherLine), true);
+    assert.strictEqual(line.isEqualTo(other), true);
   });
 
   it("should return false if both are lines and points are not equal", function() {
     const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
-    const otherLine = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
+    const other = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
 
-    assert.strictEqual(line.isEqualTo(otherLine), false);
+    assert.strictEqual(line.isEqualTo(other), false);
   });
 
   it("should return false if one is not line and points are equal", function() {
     const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
-    const otherObject = { endA: { x: 2, y: 3 }, endB: { x: 4, y: 7 } };
+    const other = { endA: { x: 2, y: 3 }, endB: { x: 4, y: 7 } };
 
-    assert.strictEqual(line.isEqualTo(otherObject), false);
+    assert.strictEqual(line.isEqualTo(other), false);
   });
 
   it("should return false if one is not line and points are not equal", function() {
     const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
-    const otherObject = { endA: { x: 1, y: 4 }, endB: { x: 3, y: 9 } };
+    const other = { endA: { x: 1, y: 4 }, endB: { x: 3, y: 9 } };
 
-    assert.strictEqual(line.isEqualTo(otherObject), false);
+    assert.strictEqual(line.isEqualTo(other), false);
   });
 });
