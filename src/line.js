@@ -33,6 +33,14 @@ class Line {
     const xCoordinatePointsDist = this.endB.x - this.endA.x;
     return yCoordinatePointsDist / xCoordinatePointsDist;
   }
+
+  isParallelTo(other) {
+    if (this.isEqualTo(other)) {
+      return true;
+    } else {
+      return this.slope == other.slope;
+    }
+  }
 }
 
 module.exports = Line;

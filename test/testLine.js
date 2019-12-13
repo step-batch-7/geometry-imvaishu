@@ -107,3 +107,12 @@ describe("slope", function() {
     assert.strictEqual(actualSlope, expectedSlope);
   });
 });
+
+describe("isParallelTo", function() {
+  it("should return if two lines are parallel", function() {
+    const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
+    const other = new Line({ x: 9, y: 11 }, { x: 4, y: 1 });
+
+    assert.strictEqual(line.isParallelTo(other), true);
+  });
+});
