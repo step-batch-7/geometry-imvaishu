@@ -1,19 +1,24 @@
-class Line {
-  constructor(x1, y1, x2, y2) {
-    this.endA = { x: x1, y: y1 };
-    this.endB = { x: x2, y: y2 };
+"use strict";
 
-    // this.x1Axis = x1Axis;
-    // this.x2Axis = x2Axis;
-    // this.y1Axis = y1Axis;
-    // this.y2Axis = y2Axis;
+const arePointsEqual = function(pointA, pointB) {
+  return pointA.x == pointB.x && pointA.y == pointB.y;
+};
+
+class Line {
+  constructor(start, end) {
+    this.endA = { x: start.x, y: start.y };
+    this.endB = { x: end.x, y: end.y };
   }
   toString() {
     return `Line (${this.endA.x},${this.endA.y}) (${this.endB.x},${this.endB.y})`;
   }
-  // isEqualTo(other) {
-  //   return this === other;
-  // }
+
+  isEqualTo(otherLine) {
+    const isTypeEqual = otherLine instanceof Line;
+    const areStartPointsEqual = arePointsEqual(this.endA, otherLine.endA);
+    const areEndPointsEqual = arePointsEqual(this.endB, otherLine.endB);
+    return isTypeEqual && areStartPointsEqual && areEndPointsEqual;
+  }
 }
 
 module.exports = Line;
