@@ -85,4 +85,11 @@ describe("slope", function() {
     const expectedSlope = 3;
     assert.strictEqual(actualSlope, expectedSlope);
   });
+
+  it("should calculate slope of line if y-axis points are zero ", function() {
+    const line = new Line({ x: 2, y: 0 }, { x: 3, y: 0 });
+    const actualSlope = line.slope;
+    const expectedSlope = 0;
+    assert.strictEqual(actualSlope, expectedSlope);
+  });
 });
