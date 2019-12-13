@@ -35,11 +35,7 @@ class Line {
   }
 
   isParallelTo(other) {
-    if (this.isEqualTo(other)) {
-      return true;
-    } else {
-      return this.slope == other.slope;
-    }
+    return this.slope == other.slope;
   }
 }
 
