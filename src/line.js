@@ -9,6 +9,7 @@ class Line {
     this.endA = { ...start };
     this.endB = { ...end };
   }
+
   toString() {
     return `Line (${this.endA.x},${this.endA.y}) (${this.endB.x},${this.endB.y})`;
   }
