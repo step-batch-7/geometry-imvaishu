@@ -6,8 +6,8 @@ const arePointsEqual = function(pointA, pointB) {
 
 class Line {
   constructor(start, end) {
-    this.endA = { x: start.x, y: start.y };
-    this.endB = { x: end.x, y: end.y };
+    this.endA = { ...start };
+    this.endB = { ...end };
   }
   toString() {
     return `Line (${this.endA.x},${this.endA.y}) (${this.endB.x},${this.endB.y})`;
