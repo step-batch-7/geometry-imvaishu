@@ -38,11 +38,32 @@ describe("Point", function() {
   });
 
   describe("isEqualTo", function() {
-    it("should return true if if points are equal", function() {
+    it("should return true if points are equal", function() {
       const point = new Point(1, 2);
       const other = new Point(1, 2);
 
       assert.strictEqual(point.isEqualTo(other), true);
+    });
+
+    it("should return false if points are not equal", function() {
+      const point = new Point(1, 2);
+      const other = new Point(2, 2);
+
+      assert.strictEqual(point.isEqualTo(other), false);
+    });
+
+    it("should return false if one is not point and points are equal", function() {
+      const point = new Point(1, 2);
+      const other = { Point: { x: 1, y: 2 } };
+
+      assert.strictEqual(point.isEqualTo(other), false);
+    });
+
+    it("should return false if one is not line and points are not equal", function() {
+      const point = new Point(1, 2);
+      const other = { Point: { x: 3, y: 5 } };
+
+      assert.strictEqual(point.isEqualTo(other), false);
     });
   });
 });
