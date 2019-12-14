@@ -214,5 +214,14 @@ describe("Line", function() {
 
       assert.deepStrictEqual(line.split(), expectedLines);
     });
+
+    it("should split line equally from midpoint if both endPoints are zero", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
+      const firstHalfLine = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
+      const secondHalfLine = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
+      const expectedLines = [firstHalfLine, secondHalfLine];
+
+      assert.deepStrictEqual(line.split(), expectedLines);
+    });
   });
 });
