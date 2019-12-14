@@ -36,4 +36,13 @@ describe("Point", function() {
       assert.deepStrictEqual(newPoint, point);
     });
   });
+
+  describe("isEqualTo", function() {
+    it("should return true if if points are equal", function() {
+      const point = new Point(1, 2);
+      const other = new Point(1, 2);
+
+      assert.strictEqual(point.isEqualTo(other), true);
+    });
+  });
 });
