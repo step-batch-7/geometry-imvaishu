@@ -223,5 +223,23 @@ describe("Line", function() {
 
       assert.deepStrictEqual(line.split(), expectedLines);
     });
+
+    it("should split line equally from midpoint if line is vertical", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 2, y: 10 });
+      const firstHalfLine = new Line({ x: 2, y: 6 }, { x: 2, y: 8 });
+      const secondHalfLine = new Line({ x: 2, y: 8 }, { x: 2, y: 10 });
+      const expectedLines = [firstHalfLine, secondHalfLine];
+
+      assert.deepStrictEqual(line.split(), expectedLines);
+    });
+
+    it("should split line equally from midpoint if length is zero", function() {
+      const line = new Line({ x: -5, y: -5 }, { x: -5, y: -5 });
+      const firstHalfLine = new Line({ x: -5, y: -5 }, { x: -5, y: -5 });
+      const secondHalfLine = new Line({ x: -5, y: -5 }, { x: -5, y: -5 });
+      const expectedLines = [firstHalfLine, secondHalfLine];
+
+      assert.deepStrictEqual(line.split(), expectedLines);
+    });
   });
 });
