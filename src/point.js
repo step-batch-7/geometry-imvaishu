@@ -15,7 +15,4 @@ class Point {
   }
 }
 
-const a = new Point(1, 2);
-console.log(a);
-console.log(a.toString());
 module.exports = Point;
