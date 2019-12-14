@@ -27,5 +27,13 @@ describe("Point", function() {
       assert.strictEqual(point.visit(activity), 8);
     });
   });
+
+  describe("clone", function() {
+    it("should return new point but with different reference", function() {
+      const point = new Point(1, 2);
+      const newPoint = point.clone();
+
+      assert.deepStrictEqual(newPoint, point);
+    });
+  });
 });
-``;
