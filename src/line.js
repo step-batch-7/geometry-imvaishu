@@ -39,9 +39,31 @@ class Line {
   }
 
   findX(y) {
+    if (y > this.endB.y) {
+      return NaN;
+    }
+
+    if (y < this.endA.y) {
+      return NaN;
+    }
+
     let LHS = y - this.endA.y;
     LHS = LHS / this.slope;
     return LHS + this.endA.x;
+  }
+
+  findY(x) {
+    if (x > this.endB.x) {
+      return NaN;
+    }
+
+    if (x < this.endA.x) {
+      return NaN;
+    }
+
+    let RHS = x - this.endA.x;
+    RHS = this.slope * RHS;
+    return RHS + this.endA.y;
   }
 }
 

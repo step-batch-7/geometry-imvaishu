@@ -153,11 +153,43 @@ describe("Line", function() {
     });
   });
 
-  describe("findY", function() {
-    it("should calculate x value of y intercept", function() {
+  describe("findX", function() {
+    it("should calculate x intercept if y intercept given", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
 
       assert.strictEqual(line.findX(8), 3);
+    });
+
+    it("should return Nan if y intercept is greater than endPoint", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+
+      assert.isNaN(line.findX(18));
+    });
+
+    it("should return Nan if y intercept is less than startPoint", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+
+      assert.isNaN(line.findX(1));
+    });
+  });
+
+  describe("findY", function() {
+    it("should calculate y intercept if x intercept given", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+
+      assert.strictEqual(line.findY(4), 10);
+    });
+
+    it("should return Nan if x intercept is greater than endPoint", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+
+      assert.isNaN(line.findY(8));
+    });
+
+    it("should return Nan if x intercept is less than startPoint", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+
+      assert.isNaN(line.findY(1));
     });
   });
 });
