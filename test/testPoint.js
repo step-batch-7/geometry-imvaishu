@@ -11,4 +11,21 @@ describe("Point", function() {
       assert.deepStrictEqual(actualValue.toString(), expectedValue);
     });
   });
+
+  describe("visit", function() {
+    it("should visit the function with point x and y", function() {
+      const point = new Point(1, 2);
+      const activity = (x, y) => x + y;
+
+      assert.strictEqual(point.visit(activity), 3);
+    });
+
+    it("should visit the other function with point x and y", function() {
+      const point = new Point(4, 2);
+      const activity = (x, y) => x * y;
+
+      assert.strictEqual(point.visit(activity), 8);
+    });
+  });
 });
+``;

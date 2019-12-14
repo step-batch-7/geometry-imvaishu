@@ -9,6 +9,10 @@ class Point {
   toString() {
     return `[Point @(${this.x},${this.y})]`;
   }
+
+  visit(activity) {
+    return activity(this.x, this.y);
+  }
 }
 
 const a = new Point(1, 2);
