@@ -204,4 +204,15 @@ describe("Line", function() {
       assert.strictEqual(line.findY(0), 2);
     });
   });
+
+  describe("split", function() {
+    it("should split line equally from midpoint", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 6, y: 10 });
+      const firstHalfLine = new Line({ x: 2, y: 6 }, { x: 4, y: 8 });
+      const secondHalfLine = new Line({ x: 4, y: 8 }, { x: 6, y: 10 });
+      const expectedLines = [firstHalfLine, secondHalfLine];
+
+      assert.deepStrictEqual(line.split(), expectedLines);
+    });
+  });
 });
