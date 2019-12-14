@@ -124,12 +124,12 @@ describe("Line", function() {
       assert.strictEqual(line.isParallelTo(other), false);
     });
 
-    // it("should return false if two lines are overlapping", function() {
-    //   const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
-    //   const other = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
+    it.skip("should return false if two lines are overlapping", function() {
+      const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
+      const other = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
 
-    //   assert.strictEqual(line.isParallelTo(other), false);
-    //});
+      assert.strictEqual(line.isParallelTo(other), false);
+    });
 
     it("should return false if one is not line", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
