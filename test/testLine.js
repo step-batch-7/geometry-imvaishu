@@ -6,7 +6,7 @@ describe("Line", function() {
   describe("toString", function() {
     it("should return toString of line", function() {
       let actualValue = new Line({ x: 1, y: 4 }, { x: 3, y: 9 }).toString();
-      const expectedValue = "Line (1,4) (3,9)";
+      const expectedValue = "[Line (1,4) to (3,9)]";
 
       assert.deepStrictEqual(actualValue, expectedValue);
     });
@@ -154,19 +154,19 @@ describe("Line", function() {
   });
 
   describe("findX", function() {
-    it("should calculate x intercept if y intercept given", function() {
+    it("should find x  if y  given", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
 
       assert.strictEqual(line.findX(8), 3);
     });
 
-    it("should return Nan if y intercept is greater than endPoint", function() {
+    it("should return Nan if y is greater than endPoint", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
 
       assert.isNaN(line.findX(18));
     });
 
-    it("should return Nan if y intercept is less than startPoint", function() {
+    it("should return Nan if y is less than startPoint", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
 
       assert.isNaN(line.findX(1));
@@ -174,19 +174,19 @@ describe("Line", function() {
   });
 
   describe("findY", function() {
-    it("should calculate y intercept if x intercept given", function() {
+    it("should find y if x given", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
 
       assert.strictEqual(line.findY(4), 10);
     });
 
-    it("should return Nan if x intercept is greater than endPoint", function() {
+    it("should return Nan if x is greater than endPoint", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
 
       assert.isNaN(line.findY(8));
     });
 
-    it("should return Nan if x intercept is less than startPoint", function() {
+    it("should return Nan if x is less than startPoint", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
 
       assert.isNaN(line.findY(1));
