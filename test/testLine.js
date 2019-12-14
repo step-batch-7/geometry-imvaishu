@@ -171,6 +171,12 @@ describe("Line", function() {
 
       assert.isNaN(line.findX(1));
     });
+
+    it("should return value of x1 if slope of lone is 0", function() {
+      const line = new Line({ x: 2, y: 1 }, { x: 3, y: 1 });
+
+      assert.strictEqual(line.findX(3), 2);
+    });
   });
 
   describe("findY", function() {

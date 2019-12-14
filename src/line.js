@@ -39,6 +39,10 @@ class Line {
   }
 
   findX(y) {
+    if (this.slope === 0) {
+      return this.endA.x;
+    }
+
     if (y > this.endB.y) {
       return NaN;
     }
