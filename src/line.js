@@ -57,6 +57,10 @@ class Line {
   }
 
   findY(x) {
+    if (this.slope === Infinity) {
+      return this.endB.y;
+    }
+
     if (x > this.endB.x) {
       return NaN;
     }
