@@ -178,6 +178,12 @@ describe("Line", function() {
 
       assert.strictEqual(line.findX(3), 2);
     });
+
+    it("should give x value for given y for line is going down ", function() {
+      const line = new Line({ x: -1, y: 1 }, { x: 2, y: -5 });
+
+      assert.deepStrictEqual(line.findX(-1), 0);
+    });
   });
 
   describe("findY", function() {
@@ -199,7 +205,7 @@ describe("Line", function() {
       assert.isNaN(line.findY(1));
     });
 
-    it("should return value of y1 if slope of line is infinity or -infinity", function() {
+    it("should return value of y1 if slope of line is infinity ", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 2 });
 
       assert.strictEqual(line.findY(0), 2);
