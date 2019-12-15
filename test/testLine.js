@@ -6,10 +6,10 @@ Point = require("../src/point");
 describe("Line", function() {
   describe("toString", function() {
     it("should return toString of line", function() {
-      let actualValue = new Line({ x: 1, y: 4 }, { x: 3, y: 9 }).toString();
-      const expectedValue = "[Line (1,4) to (3,9)]";
+      let line = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
+      const expectedString = "[Line (1,4) to (3,9)]";
 
-      assert.deepStrictEqual(actualValue, expectedValue);
+      assert.deepStrictEqual(line.toString(), expectedString);
     });
   });
 
@@ -56,6 +56,7 @@ describe("Line", function() {
       const line = new Line({ x: 1, y: -3 }, { x: -6, y: 6 });
       const actualLength = line.length;
       const expectedLength = 11.40175425099138;
+
       assert.strictEqual(actualLength, expectedLength);
     });
 
@@ -63,6 +64,7 @@ describe("Line", function() {
       const line = new Line({ x: 1, y: 6 }, { x: 4, y: 10 });
       const actualLength = line.length;
       const expectedLength = 5;
+
       assert.strictEqual(actualLength, expectedLength);
     });
 
@@ -70,6 +72,7 @@ describe("Line", function() {
       const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
       const actualLength = line.length;
       const expectedLength = 0;
+
       assert.strictEqual(actualLength, expectedLength);
     });
   });
@@ -79,6 +82,7 @@ describe("Line", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
       const actualSlope = line.slope;
       const expectedSlope = 2;
+
       assert.strictEqual(actualSlope, expectedSlope);
     });
 
@@ -86,6 +90,7 @@ describe("Line", function() {
       const line = new Line({ x: -2, y: -4 }, { x: 1, y: 5 });
       const actualSlope = line.slope;
       const expectedSlope = 3;
+
       assert.strictEqual(actualSlope, expectedSlope);
     });
 
@@ -93,6 +98,7 @@ describe("Line", function() {
       const line = new Line({ x: 2, y: 0 }, { x: 3, y: 0 });
       const actualSlope = line.slope;
       const expectedSlope = 0;
+
       assert.strictEqual(actualSlope, expectedSlope);
     });
 
@@ -100,12 +106,14 @@ describe("Line", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 2 });
       const actualSlope = line.slope;
       const expectedSlope = Infinity;
+
       assert.strictEqual(actualSlope, expectedSlope);
     });
 
     it("should calculate slope of line if all points are zero ", function() {
       const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
       const actualSlope = line.slope;
+
       assert.isNaN(actualSlope);
     });
   });

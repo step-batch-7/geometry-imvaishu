@@ -5,10 +5,10 @@ Point = require("../src/point.js");
 describe("Point", function() {
   describe("toString", function() {
     it("should return toString of point", function() {
-      const actualValue = new Point(1, 2);
-      const expectedValue = "[Point @(1,2)]";
+      const point = new Point(1, 2);
+      const expectedString = "[Point @(1,2)]";
 
-      assert.deepStrictEqual(actualValue.toString(), expectedValue);
+      assert.deepStrictEqual(point.toString(), expectedString);
     });
   });
 
