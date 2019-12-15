@@ -251,5 +251,33 @@ describe("Line", function() {
 
       assert.isOk(line.hasPoint(point));
     });
+
+    it("should return false if line has not point and both are line and point", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(1, 2);
+
+      assert.isNotOk(line.hasPoint(point));
+    });
+
+    it("should return false if one is not Point", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = { x: 3, y: 8 };
+
+      assert.isNotOk(line.hasPoint(point));
+    });
+
+    it("should return false if line has x point but has not y point", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(3, 2);
+
+      assert.isNotOk(line.hasPoint(point));
+    });
+
+    it("should return false if line has y point but has not x point", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(1, 6);
+
+      assert.isNotOk(line.hasPoint(point));
+    });
   });
 });

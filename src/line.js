@@ -90,7 +90,7 @@ class Line {
   hasPoint(point) {
     return (
       point instanceof Point &&
-      (this.findX(point.y) == point.x || this.findY(point.x) == point.y)
+      (this.findX(point.y) == point.x || this.findY(point.x) == point)
     );
   }
 }
