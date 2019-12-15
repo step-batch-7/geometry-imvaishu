@@ -1,6 +1,7 @@
 const chai = require("chai");
 const assert = chai.assert;
 Line = require("../src/line.js");
+Point = require("../src/point");
 
 describe("Line", function() {
   describe("toString", function() {
@@ -240,6 +241,15 @@ describe("Line", function() {
       const expectedLines = [firstHalfLine, secondHalfLine];
 
       assert.deepStrictEqual(line.split(), expectedLines);
+    });
+  });
+
+  describe("hasPoint", function() {
+    it("should return true if line has point and both are line and point", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(3, 8);
+
+      assert.isOk(line.hasPoint(point));
     });
   });
 });

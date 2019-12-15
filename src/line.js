@@ -1,5 +1,7 @@
 "use strict";
 
+const Point = require("./point.js");
+
 const arePointsEqual = function(pointA, pointB) {
   return pointA.x == pointB.x && pointA.y == pointB.y;
 };
@@ -83,6 +85,13 @@ class Line {
     const firstHalfLine = new Line(this.endA, midPoint);
     const secondHAlfLine = new Line(midPoint, this.endB);
     return [firstHalfLine, secondHAlfLine];
+  }
+
+  hasPoint(point) {
+    return (
+      point instanceof Point &&
+      (this.findX(point.y) == point.x || this.findY(point.x) == point.y)
+    );
   }
 }
 
