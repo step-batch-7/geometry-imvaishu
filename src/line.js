@@ -6,6 +6,12 @@ const arePointsEqual = function(pointA, pointB) {
   return pointA.x == pointB.x && pointA.y == pointB.y;
 };
 
+const arePointsInRange = function(range, value) {
+  const sortedRange = range.sort((a, b) => a - b);
+
+  return value >= sortedRange[0] && value <= sortedRange[1];
+};
+
 class Line {
   constructor(start, end) {
     this.endA = { x: start.x, y: start.y };
@@ -45,11 +51,7 @@ class Line {
       return this.endA.x;
     }
 
-    if (y > this.endB.y) {
-      return NaN;
-    }
-
-    if (y < this.endA.y) {
+    if (!arePointsInRange([this.endA.y, this.endB.y], y)) {
       return NaN;
     }
 
@@ -63,11 +65,7 @@ class Line {
       return this.endB.y;
     }
 
-    if (x > this.endB.x) {
-      return NaN;
-    }
-
-    if (x < this.endA.x) {
+    if (!arePointsInRange([this.endA.x, this.endB.x], x)) {
       return NaN;
     }
 
@@ -90,7 +88,7 @@ class Line {
   hasPoint(point) {
     return (
       point instanceof Point &&
-      (this.findX(point.y) == point.x || this.findY(point.x) == point)
+      (this.findX(point.y) === point.x || this.findY(point.x) === point.y)
     );
   }
 }

@@ -279,5 +279,11 @@ describe("Line", function() {
 
       assert.isNotOk(line.hasPoint(point));
     });
+    it("should return false if line is vertical and it does not have that point", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 2, y: 10 });
+      const point = new Point(2, 2);
+
+      assert.isNotOk(line.hasPoint(point));
+    });
   });
 });
