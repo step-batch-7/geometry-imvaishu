@@ -12,6 +12,13 @@ const arePointsInRange = function(range, value) {
   return value >= sortedRange[0] && value <= sortedRange[1];
 };
 
+const arePointsCollinear = function(pointA, pointB, pointC) {
+  const [x1, y1] = [pointA.x, pointA.y];
+  const [x2, y2] = [pointB.x, pointB.y];
+  const [x3, y3] = [pointC.x, pointC.y];
+  return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
+};
+
 class Line {
   constructor(start, end) {
     this.endA = { x: start.x, y: start.y };
@@ -43,7 +50,11 @@ class Line {
   }
 
   isParallelTo(other) {
-    return other instanceof Line && this.slope == other.slope;
+    return (
+      other instanceof Line &&
+      !arePointsCollinear(this.endA, this.endB, other.endA) &&
+      this.slope == other.slope
+    );
   }
 
   findX(y) {
