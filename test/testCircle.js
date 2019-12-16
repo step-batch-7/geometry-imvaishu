@@ -51,10 +51,18 @@ describe("Circle", function() {
   });
 
   describe("area", function() {
-    it("should calculate area o if radius of circle is zero", function() {
+    it("should calculate area 0 if radius of circle is zero", function() {
       const circle = new Circle({ x: 1, y: 2 }, 0);
       const actualArea = circle.area;
       const expectedArea = 0;
+
+      assert.deepStrictEqual(actualArea, expectedArea);
+    });
+
+    it("should calculate area if radius of circle is given and area is in decimal", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const actualArea = circle.area;
+      const expectedArea = 78.53981633974483;
 
       assert.deepStrictEqual(actualArea, expectedArea);
     });
