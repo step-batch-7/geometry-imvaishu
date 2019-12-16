@@ -16,7 +16,7 @@ describe("Circle", function() {
   describe("isEqualTo", function() {
     it("should return false if other is not instance of Circle", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
-      const other = { center: { x: 1, y: 2 }, radius: 5 };
+      const other = { center: { x: 2, y: 3 }, radius: 15 };
 
       assert.deepStrictEqual(circle.isEqualTo(other), false);
     });
@@ -26,6 +26,27 @@ describe("Circle", function() {
       const circle2 = new Circle({ x: 1, y: 2 }, 5);
 
       assert.deepStrictEqual(circle1.isEqualTo(circle2), true);
+    });
+
+    it("should return false if center and radius are not same", function() {
+      const circle1 = new Circle({ x: 1, y: 2 }, 5);
+      const circle2 = new Circle({ x: 2, y: 4 }, 12);
+
+      assert.deepStrictEqual(circle1.isEqualTo(circle2), false);
+    });
+
+    it("should return false if center are same but radius is not same", function() {
+      const circle1 = new Circle({ x: 1, y: 2 }, 5);
+      const circle2 = new Circle({ x: 1, y: 2 }, 12);
+
+      assert.deepStrictEqual(circle1.isEqualTo(circle2), false);
+    });
+
+    it("should return false if radius is same but center are not same", function() {
+      const circle1 = new Circle({ x: 1, y: 2 }, 5);
+      const circle2 = new Circle({ x: 3, y: 4 }, 5);
+
+      assert.deepStrictEqual(circle1.isEqualTo(circle2), false);
     });
   });
 });
