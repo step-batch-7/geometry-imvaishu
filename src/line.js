@@ -2,9 +2,9 @@
 
 const Point = require("./point.js");
 
-const arePointsEqual = function(pointA, pointB) {
-  return pointA.x == pointB.x && pointA.y == pointB.y;
-};
+// const arePointsEqual = function(pointA, pointB) {
+//   return pointA.x == pointB.x && pointA.y == pointB.y;
+// };
 
 const arePointsInRange = function(range, value) {
   const sortedRange = range.sort((a, b) => a - b);
@@ -21,8 +21,8 @@ const arePointsCollinear = function(pointA, pointB, pointC) {
 
 class Line {
   constructor(start, end) {
-    this.endA = { x: start.x, y: start.y };
-    this.endB = { x: end.x, y: end.y };
+    this.endA = new Point(start.x, start.y);
+    this.endB = new Point(end.x, end.y);
   }
 
   toString() {
@@ -32,18 +32,23 @@ class Line {
   isEqualTo(other) {
     return (
       other instanceof Line &&
-      (arePointsEqual(this.endA, other.endA) ||
-        arePointsEqual(this.endA, other.endB)) &&
-      (arePointsEqual(this.endB, other.endB) ||
-        arePointsEqual(this.endB, other.endA))
+      (new Point(this.endA.x, this.endA.y).isEqualTo(
+        new Point(other.endA.x, other.endA.y)
+      ) ||
+        new Point(this.endA.x, this.endA.y).isEqualTo(
+          new Point(other.endB.x, other.endB.y)
+        )) &&
+      (new Point(this.endB.x, this.endB.y).isEqualTo(
+        new Point(other.endB.x, other.endB.y)
+      ) ||
+        new Point(this.endB.x, this.endB.y).isEqualTo(
+          new Point(other.endA.x, other.endA.y)
+        ))
     );
   }
 
   get length() {
-    const yCoordinatePointsDist = this.endB.y - this.endA.y;
-    const xCoordinatePointsDist = this.endB.x - this.endA.x;
-
-    return Math.sqrt(xCoordinatePointsDist ** 2 + yCoordinatePointsDist ** 2);
+    return this.endA.findDistanceTo(this.endB);
   }
 
   get slope() {
