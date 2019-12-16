@@ -73,7 +73,7 @@ class Line {
 
   findY(x) {
     if (this.slope === Infinity) {
-      return this.endB.y;
+      return this.endA.y;
     }
 
     if (!arePointsInRange([this.endA.x, this.endB.x], x)) {

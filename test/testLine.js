@@ -41,6 +41,13 @@ describe("Line", function() {
 
       assert.strictEqual(line.isEqualTo(other), false);
     });
+
+    it("should validate if equal lines are given with altered start and end", function() {
+      const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
+      const other = new Line({ x: 4, y: 7 }, { x: 2, y: 3 });
+
+      assert.strictEqual(line.isEqualTo(other), false);
+    });
   });
 
   describe("length", function() {
@@ -115,6 +122,13 @@ describe("Line", function() {
       const actualSlope = line.slope;
 
       assert.isNaN(actualSlope);
+    });
+
+    it("should give Infinity as slope when line is parallel to y-axis and direction is upwards", function() {
+      const line = new Line({ x: 2, y: 5 }, { x: 2, y: 8 });
+      const actualSlope = line.slope;
+
+      assert.strictEqual(actualSlope, Infinity);
     });
   });
 
@@ -223,7 +237,13 @@ describe("Line", function() {
     it("should return value of y1 if slope of line is infinity ", function() {
       const line = new Line({ x: 0, y: 1 }, { x: 0, y: 2 });
 
-      assert.strictEqual(line.findY(0), 2);
+      assert.strictEqual(line.findY(0), 1);
+    });
+
+    it("should give y value of start point if there are multiple y values available for a given x", function() {
+      const line = new Line({ x: 2, y: 1 }, { x: 2, y: 3 });
+
+      assert.strictEqual(line.findY(2), 1);
     });
   });
 
