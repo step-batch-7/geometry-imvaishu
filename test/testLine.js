@@ -398,5 +398,11 @@ describe("Line", function() {
 
       assert.deepStrictEqual(line.findPointFromEnd(0), new Point(4, 6));
     });
+
+    it("should return point if valid distance is given from endPoint of line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 1 });
+
+      assert.deepStrictEqual(line.findPointFromEnd(3), new Point(2, 1));
+    });
   });
 });
