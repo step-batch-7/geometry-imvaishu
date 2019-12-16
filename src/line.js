@@ -94,6 +94,7 @@ class Line {
 
     const firstHalfLine = new Line(this.endA, midPoint);
     const secondHAlfLine = new Line(midPoint, this.endB);
+
     return [firstHalfLine, secondHAlfLine];
   }
 

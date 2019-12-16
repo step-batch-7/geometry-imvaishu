@@ -66,4 +66,20 @@ describe("Point", function() {
       assert.strictEqual(point.isEqualTo(other), false);
     });
   });
+
+  describe("findDistanceTo", function() {
+    it("should return NaN if other is not instance of Point class", function() {
+      const point = new Point(7, 4);
+      const other = { Point: { x: 3, y: 5 } };
+
+      assert.isNaN(point.findDistanceTo(other));
+    });
+
+    it("should return 0 if both are instance of point and same", function() {
+      const point1 = new Point(4, 4);
+      const point2 = new Point(4, 4);
+
+      assert.deepStrictEqual(point1.findDistanceTo(point2), 0);
+    });
+  });
 });
