@@ -29,7 +29,10 @@ class Circle {
   hasPoint(other) {
     if (!(other instanceof Point)) return false;
 
-    return (other.x - this.center.x && other.y - this.center.y) <= this.radius;
+    return (
+      other.x - this.center.x <= this.radius &&
+      other.y - this.center.y <= this.radius
+    );
   }
 }
 

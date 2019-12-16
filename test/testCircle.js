@@ -108,5 +108,19 @@ describe("Circle", function() {
 
       assert.isNotOk(circle.hasPoint(point));
     });
+
+    it("should return false if circle has x point but has not y point", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(3, 8);
+
+      assert.isNotOk(circle.hasPoint(point));
+    });
+
+    it("should return false if circle has y point but has not x point", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(8, 6);
+
+      assert.isNotOk(circle.hasPoint(point));
+    });
   });
 });
