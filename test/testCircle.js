@@ -49,4 +49,14 @@ describe("Circle", function() {
       assert.deepStrictEqual(circle1.isEqualTo(circle2), false);
     });
   });
+
+  describe("area", function() {
+    it("should calculate area o if radius of circle is zero", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 0);
+      const actualArea = circle.area;
+      const expectedArea = 0;
+
+      assert.deepStrictEqual(actualArea, expectedArea);
+    });
+  });
 });
