@@ -2,6 +2,7 @@ const chai = require("chai");
 const assert = chai.assert;
 const Point = require("../src/point.js");
 const Line = require("../src/line");
+const Circle = require("../src/circle");
 
 describe("Point", function() {
   describe("toString", function() {
@@ -99,18 +100,32 @@ describe("Point", function() {
   });
 
   describe("isOn", function() {
-    it("should return true if shape has point", function() {
+    it("should return true if point is present on line", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
       const point = new Point(3, 8);
 
       assert.ok(point.isOn(line));
     });
 
-    it("should return false if shape has point", function() {
+    it("should return false if point is not present on line", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
       const point = new Point(5, 12);
 
       assert.notOk(point.isOn(line));
+    });
+
+    it("should return true if point is present on circle", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(3, 7);
+
+      assert.ok(point.isOn(circle));
+    });
+
+    it("should return false if point is not present on circle", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(7, 8);
+
+      assert.notOk(point.isOn(circle));
     });
   });
 });
