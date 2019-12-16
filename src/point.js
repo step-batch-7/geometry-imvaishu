@@ -30,6 +30,10 @@ class Point {
 
     return Math.sqrt(xCoordinatePointsDist ** 2 + yCoordinatePointsDist ** 2);
   }
+
+  isOn(shape) {
+    return shape.hasPoint(this);
+  }
 }
 
 module.exports = Point;

@@ -1,6 +1,7 @@
 const chai = require("chai");
 const assert = chai.assert;
 const Point = require("../src/point.js");
+const Line = require("../src/line");
 
 describe("Point", function() {
   describe("toString", function() {
@@ -94,6 +95,22 @@ describe("Point", function() {
       const point2 = new Point(6, 9);
 
       assert.deepStrictEqual(point1.findDistanceTo(point2), 4.123105625617661);
+    });
+  });
+
+  describe("isOn", function() {
+    it("should return true if shape has point", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(3, 8);
+
+      assert.ok(point.isOn(line));
+    });
+
+    it("should return true if shape has point", function() {
+      const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(5, 12);
+
+      assert.notOk(point.isOn(line));
     });
   });
 });
