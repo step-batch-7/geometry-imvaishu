@@ -1,6 +1,7 @@
 const chai = require("chai");
 const assert = chai.assert;
 const Circle = require("../src/circle");
+const Point = require("../src/point");
 
 describe("Circle", function() {
   describe("toString", function() {
@@ -59,7 +60,7 @@ describe("Circle", function() {
       assert.deepStrictEqual(actualArea, expectedArea);
     });
 
-    it("should calculate area if radius of circle is given and area is in decimal", function() {
+    it("should calculate area if radius of circle is more than zero", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
       const actualArea = circle.area;
       const expectedArea = 78.53981633974483;
@@ -77,12 +78,35 @@ describe("Circle", function() {
       assert.deepStrictEqual(actualArea, expectedArea);
     });
 
-    it("should calculate perimeter if radius of circle is zero", function() {
+    it("should calculate perimeter if radius of circle is more than zero", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
       const actualArea = circle.perimeter;
       const expectedArea = 31.41592653589793;
 
       assert.deepStrictEqual(actualArea, expectedArea);
+    });
+  });
+
+  describe("hasPoint", function() {
+    it("should return false if other one is not instance of point", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = { x: 3, y: 8 };
+
+      assert.isNotOk(circle.hasPoint(point));
+    });
+
+    it("should return true if circle has point and given point is instance of Point", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(3, 5);
+
+      assert.isOk(circle.hasPoint(point));
+    });
+
+    it("should return false if circle has not point", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(7, 8);
+
+      assert.isNotOk(circle.hasPoint(point));
     });
   });
 });

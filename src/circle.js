@@ -25,6 +25,12 @@ class Circle {
   get perimeter() {
     return 2 * Math.PI * this.radius;
   }
+
+  hasPoint(other) {
+    if (!(other instanceof Point)) return false;
+
+    return (other.x - this.center.x && other.y - this.center.y) <= this.radius;
+  }
 }
 
 module.exports = Circle;
