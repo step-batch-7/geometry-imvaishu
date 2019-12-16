@@ -1,6 +1,6 @@
 const chai = require("chai");
 const assert = chai.assert;
-Point = require("../src/point.js");
+const Point = require("../src/point.js");
 
 describe("Point", function() {
   describe("toString", function() {
