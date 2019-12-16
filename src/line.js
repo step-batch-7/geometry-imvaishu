@@ -63,24 +63,24 @@ class Line {
   }
 
   findX(y) {
-    if (this.slope === 0) {
-      return this.endA.x;
-    }
-
     if (!arePointsInRange([this.endA.y, this.endB.y], y)) {
       return NaN;
+    }
+
+    if (this.slope === 0) {
+      return this.endA.x;
     }
 
     return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
-    if (this.slope === Infinity) {
-      return this.endA.y;
-    }
-
     if (!arePointsInRange([this.endA.x, this.endB.x], x)) {
       return NaN;
+    }
+
+    if (this.slope === Infinity) {
+      return this.endA.y;
     }
 
     return (x - this.endA.x) * this.slope + this.endA.y;

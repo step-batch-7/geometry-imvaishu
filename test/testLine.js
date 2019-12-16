@@ -212,7 +212,13 @@ describe("Line", function() {
     it("should return value of x1 if slope of line is 0", function() {
       const line = new Line({ x: 2, y: 1 }, { x: 3, y: 1 });
 
-      assert.strictEqual(line.findX(3), 2);
+      assert.strictEqual(line.findX(1), 2);
+    });
+
+    it("should return NaN if slope of line is 0 but value of y is not in range", function() {
+      const line = new Line({ x: 2, y: 1 }, { x: 3, y: 1 });
+
+      assert.isNaN(line.findX(3));
     });
 
     it("should give x value for given y for line is going down ", function() {
