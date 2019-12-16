@@ -116,7 +116,7 @@ describe("Point", function() {
 
     it("should return true if point is present on circle", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
-      const point = new Point(3, 7);
+      const point = new Point(1, 7);
 
       assert.ok(point.isOn(circle));
     });

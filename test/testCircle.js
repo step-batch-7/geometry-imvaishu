@@ -97,7 +97,7 @@ describe("Circle", function() {
 
     it("should return true if circle has point and given point is instance of Point", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
-      const point = new Point(3, 5);
+      const point = new Point(1, 7);
 
       assert.isOk(circle.hasPoint(point));
     });
@@ -111,14 +111,14 @@ describe("Circle", function() {
 
     it("should return false if circle has x point but has not y point", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
-      const point = new Point(3, 8);
+      const point = new Point(1, 8);
 
       assert.isNotOk(circle.hasPoint(point));
     });
 
     it("should return false if circle has y point but has not x point", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
-      const point = new Point(8, 6);
+      const point = new Point(8, 7);
 
       assert.isNotOk(circle.hasPoint(point));
     });
