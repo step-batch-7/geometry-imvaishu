@@ -106,7 +106,7 @@ describe("Point", function() {
       assert.ok(point.isOn(line));
     });
 
-    it("should return true if shape has point", function() {
+    it("should return false if shape has point", function() {
       const line = new Line({ x: 2, y: 6 }, { x: 4, y: 10 });
       const point = new Point(5, 12);
 
