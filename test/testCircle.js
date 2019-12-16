@@ -67,4 +67,22 @@ describe("Circle", function() {
       assert.deepStrictEqual(actualArea, expectedArea);
     });
   });
+
+  describe("perimeter", function() {
+    it("should calculate perimeter 0 if radius of circle is zero", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 0);
+      const actualArea = circle.perimeter;
+      const expectedArea = 0;
+
+      assert.deepStrictEqual(actualArea, expectedArea);
+    });
+
+    it("should calculate perimeter if radius of circle is zero", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const actualArea = circle.perimeter;
+      const expectedArea = 31.41592653589793;
+
+      assert.deepStrictEqual(actualArea, expectedArea);
+    });
+  });
 });
