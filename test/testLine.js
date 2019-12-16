@@ -46,7 +46,14 @@ describe("Line", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
       const other = new Line({ x: 4, y: 7 }, { x: 2, y: 3 });
 
-      assert.strictEqual(line.isEqualTo(other), false);
+      assert.strictEqual(line.isEqualTo(other), true);
+    });
+
+    it("should give true if points are altered", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      const other = new Line({ x: 5, y: 5 }, { x: 1, y: 1 });
+
+      assert.deepStrictEqual(line.isEqualTo(other), true);
     });
   });
 
@@ -175,9 +182,9 @@ describe("Line", function() {
       assert.strictEqual(line.isParallelTo(other), true);
     });
 
-    it("should return true if lines are horizontal", function() {
-      const line = new Line({ x: 4, y: 3 }, { x: 10, y: 3 });
-      const other = new Line({ x: 5, y: 4 }, { x: 15, y: 4 });
+    it("should return true if slope of line is -Infinity", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 0, y: 4 });
+      const other = new Line({ x: 1, y: 1 }, { x: 1, y: -3 });
 
       assert.strictEqual(line.isParallelTo(other), true);
     });

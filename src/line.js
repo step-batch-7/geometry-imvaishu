@@ -32,21 +32,26 @@ class Line {
   isEqualTo(other) {
     return (
       other instanceof Line &&
-      arePointsEqual(this.endA, other.endA) &&
-      arePointsEqual(this.endB, other.endB)
+      (arePointsEqual(this.endA, other.endA) ||
+        arePointsEqual(this.endA, other.endB)) &&
+      (arePointsEqual(this.endB, other.endB) ||
+        arePointsEqual(this.endB, other.endA))
     );
   }
 
   get length() {
     const yCoordinatePointsDist = this.endB.y - this.endA.y;
     const xCoordinatePointsDist = this.endB.x - this.endA.x;
+
     return Math.sqrt(xCoordinatePointsDist ** 2 + yCoordinatePointsDist ** 2);
   }
 
   get slope() {
     const yCoordinatePointsDist = this.endB.y - this.endA.y;
     const xCoordinatePointsDist = this.endB.x - this.endA.x;
-    return yCoordinatePointsDist / xCoordinatePointsDist;
+    const slope = yCoordinatePointsDist / xCoordinatePointsDist;
+
+    return slope == -Infinity ? Infinity : slope;
   }
 
   isParallelTo(other) {
@@ -66,9 +71,7 @@ class Line {
       return NaN;
     }
 
-    let LHS = y - this.endA.y;
-    LHS = LHS / this.slope;
-    return LHS + this.endA.x;
+    return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
@@ -80,9 +83,7 @@ class Line {
       return NaN;
     }
 
-    let RHS = x - this.endA.x;
-    RHS = this.slope * RHS;
-    return RHS + this.endA.y;
+    return (x - this.endA.x) * this.slope + this.endA.y;
   }
 
   split() {
