@@ -81,5 +81,19 @@ describe("Point", function() {
 
       assert.deepStrictEqual(point1.findDistanceTo(point2), 0);
     });
+
+    it("should return distance if both are instance of point and both are different", function() {
+      const point1 = new Point(3, 5);
+      const point2 = new Point(6, 9);
+
+      assert.deepStrictEqual(point1.findDistanceTo(point2), 5);
+    });
+
+    it("should work for decimal distance if both are instance of point and ", function() {
+      const point1 = new Point(7, 5);
+      const point2 = new Point(6, 9);
+
+      assert.deepStrictEqual(point1.findDistanceTo(point2), 4.123105625617661);
+    });
   });
 });
