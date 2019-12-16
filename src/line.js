@@ -95,6 +95,16 @@ class Line {
       (this.findX(point.y) === point.x || this.findY(point.x) === point.y)
     );
   }
+
+  findPointFromStart(distance) {
+    const ratioOfDistance = distance / this.length;
+    if (distance > this.length || distance < 0) return null;
+    const x =
+      (1 - ratioOfDistance) * this.endA.x + ratioOfDistance * this.endB.x;
+    const y =
+      (1 - ratioOfDistance) * this.endA.y + ratioOfDistance * this.endB.y;
+    return new Point(x, y);
+  }
 }
 
 module.exports = Line;
