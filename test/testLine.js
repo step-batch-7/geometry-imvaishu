@@ -373,4 +373,30 @@ describe("Line", function() {
       assert.deepStrictEqual(line.findPointFromStart(0), new Point(1, 2));
     });
   });
+
+  describe("findPointFromEnd", function() {
+    it("should return null if the distance is greater than line length", function() {
+      const line = new Line({ x: 1, y: 6 }, { x: 4, y: 10 });
+
+      assert.isNull(line.findPointFromEnd(6));
+    });
+
+    it("should return null if the distance is less than 0", function() {
+      const line = new Line({ x: 6, y: 2 }, { x: 9, y: 3 });
+
+      assert.isNull(line.findPointFromEnd(-1));
+    });
+
+    it("should return startPoint if distance from endPoint is same as length ", function() {
+      const line = new Line({ x: 1, y: 6 }, { x: 4, y: 10 });
+
+      assert.deepStrictEqual(line.findPointFromEnd(5), new Point(1, 6));
+    });
+
+    it("should return endPoint if given distance is 0", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 4, y: 6 });
+
+      assert.deepStrictEqual(line.findPointFromEnd(0), new Point(4, 6));
+    });
+  });
 });

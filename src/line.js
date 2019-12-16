@@ -105,6 +105,16 @@ class Line {
       (1 - ratioOfDistance) * this.endA.y + ratioOfDistance * this.endB.y;
     return new Point(x, y);
   }
+
+  findPointFromEnd(distance) {
+    const ratioOfDistance = distance / this.length;
+    if (distance > this.length || distance < 0) return null;
+    const x =
+      (1 - ratioOfDistance) * this.endB.x + ratioOfDistance * this.endA.x;
+    const y =
+      (1 - ratioOfDistance) * this.endB.y + ratioOfDistance * this.endA.y;
+    return new Point(x, y);
+  }
 }
 
 module.exports = Line;
