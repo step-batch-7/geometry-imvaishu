@@ -1,8 +1,10 @@
 "use strict";
 
+const Point = require("../src/point");
+
 class Circle {
   constructor(center, radius) {
-    this.center = { x: center.x, y: center.y };
+    this.center = new Point(center.x, center.y);
     this.radius = radius;
   }
 
@@ -13,11 +15,7 @@ class Circle {
   isEqualTo(other) {
     if (!(other instanceof Circle)) return false;
 
-    return (
-      this.radius === other.radius &&
-      this.center.x === other.center.x &&
-      this.center.y === other.center.y
-    );
+    return this.radius === other.radius && this.center.isEqualTo(other.center);
   }
 }
 

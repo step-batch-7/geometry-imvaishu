@@ -2,10 +2,6 @@
 
 const Point = require("./point.js");
 
-// const arePointsEqual = function(pointA, pointB) {
-//   return pointA.x == pointB.x && pointA.y == pointB.y;
-// };
-
 const arePointsInRange = function(range, value) {
   const sortedRange = range.sort((a, b) => a - b);
 
@@ -32,18 +28,8 @@ class Line {
   isEqualTo(other) {
     return (
       other instanceof Line &&
-      (new Point(this.endA.x, this.endA.y).isEqualTo(
-        new Point(other.endA.x, other.endA.y)
-      ) ||
-        new Point(this.endA.x, this.endA.y).isEqualTo(
-          new Point(other.endB.x, other.endB.y)
-        )) &&
-      (new Point(this.endB.x, this.endB.y).isEqualTo(
-        new Point(other.endB.x, other.endB.y)
-      ) ||
-        new Point(this.endB.x, this.endB.y).isEqualTo(
-          new Point(other.endA.x, other.endA.y)
-        ))
+      (this.endA.isEqualTo(other.endA) || this.endA.isEqualTo(other.endB)) &&
+      (this.endB.isEqualTo(other.endB) || this.endB.isEqualTo(other.endA))
     );
   }
 
