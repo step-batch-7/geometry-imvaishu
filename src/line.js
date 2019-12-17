@@ -8,12 +8,12 @@ const arePointsInRange = function(range, value) {
   return value >= sortedRange[0] && value <= sortedRange[1];
 };
 
-const getXAndY = function(distance, length, startPoint, endPoint) {
+const getXAndYOfPoint = function(length, startPoint, endPoint, distance) {
   const ratioOfDistance = distance / length;
   const x = (1 - ratioOfDistance) * startPoint.x + ratioOfDistance * endPoint.x;
   const y = (1 - ratioOfDistance) * startPoint.y + ratioOfDistance * endPoint.y;
 
-  return { x: x, y: y };
+  return new Point(x, y);
 };
 
 const arePointsCollinear = function(pointA, pointB, pointC) {
@@ -107,17 +107,13 @@ class Line {
   findPointFromStart(distance) {
     if (distance > this.length || distance < 0) return null;
 
-    const point = getXAndY(distance, this.length, this.endA, this.endB);
-
-    return new Point(point.x, point.y);
+    return getXAndYOfPoint(this.length, this.endA, this.endB, distance);
   }
 
   findPointFromEnd(distance) {
     if (distance > this.length || distance < 0) return null;
 
-    const point = getXAndY(distance, this.length, this.endB, this.endA);
-
-    return new Point(point.x, point.y);
+    return getXAndYOfPoint(this.length, this.endB, this.endA, distance);
   }
 }
 
