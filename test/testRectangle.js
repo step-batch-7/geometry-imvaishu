@@ -1,6 +1,7 @@
 const chai = require("chai");
 const assert = chai.assert;
 const Rectangle = require("../src/rectangle");
+const Point = require("../src/point");
 
 describe("Rectangle", function() {
   describe("toString", function() {
@@ -123,6 +124,50 @@ describe("Rectangle", function() {
       const rectangle2 = new Rectangle({ x: 5, y: 5 }, { x: 1, y: 1 });
 
       assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+  });
+
+  describe("hasPoint", function() {
+    it("should return false if given point is not instance of Point", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const other = { point: { x: 1, y: 2 } };
+
+      assert.isNotOk(rectangle.hasPoint(other));
+    });
+
+    it("should return true if rectangle has point on AD side", function() {
+      const rectangle = new Rectangle({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(2, 8);
+
+      assert.isOk(rectangle.hasPoint(point));
+    });
+
+    it("should return true if rectangle has point on AB side", function() {
+      const rectangle = new Rectangle({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(3, 6);
+
+      assert.isOk(rectangle.hasPoint(point));
+    });
+
+    it("should return true if rectangle has point on BC side", function() {
+      const rectangle = new Rectangle({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(4, 7);
+
+      assert.isOk(rectangle.hasPoint(point));
+    });
+
+    it("should return true if rectangle has point on CD side", function() {
+      const rectangle = new Rectangle({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(3, 10);
+
+      assert.isOk(rectangle.hasPoint(point));
+    });
+
+    it("should return false if rectangle has not point on any side", function() {
+      const rectangle = new Rectangle({ x: 2, y: 6 }, { x: 4, y: 10 });
+      const point = new Point(5, 10);
+
+      assert.notOk(rectangle.hasPoint(point));
     });
   });
 });

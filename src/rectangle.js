@@ -13,6 +13,15 @@ const getDimension = function(pointA, pointC) {
   return { length, width };
 };
 
+const getSides = function(pointA, pointC) {
+  const AB = new Line(pointA, new Point(pointC.x, pointA.y));
+  const BC = new Line(new Point(pointC.x, pointA.y), pointC);
+  const CD = new Line(pointC, new Point(pointA.x, pointC.y));
+  const AD = new Line(pointA, new Point(pointA.x, pointC.y));
+
+  return [AB, BC, CD, AD];
+};
+
 class Rectangle {
   constructor(endA, endB) {
     this.pointA = new Point(endA.x, endA.y);
@@ -42,6 +51,14 @@ class Rectangle {
     const diagonalOfOther = new Line(other.pointA, other.pointC);
 
     return diagonalOfThis.isEqualTo(diagonalOfOther);
+  }
+
+  hasPoint(other) {
+    if (!(other instanceof Point)) return false;
+
+    const sides = getSides(this.pointA, this.pointC);
+
+    return sides.some(side => side.hasPoint(other));
   }
 }
 
