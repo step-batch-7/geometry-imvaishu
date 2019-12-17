@@ -49,4 +49,20 @@ describe("Rectangle", function() {
       assert.deepStrictEqual(area, 4);
     });
   });
+
+  describe("perimeter", function() {
+    it("should return perimeter 0 if length and width is zero", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
+      const perimeter = rectangle.perimeter;
+
+      assert.deepStrictEqual(perimeter, 0);
+    });
+
+    it("should return perimeter if length and width is more than zero", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 7 });
+      const perimeter = rectangle.perimeter;
+
+      assert.deepStrictEqual(perimeter, 14);
+    });
+  });
 });
