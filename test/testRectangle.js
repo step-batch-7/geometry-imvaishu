@@ -64,5 +64,26 @@ describe("Rectangle", function() {
 
       assert.deepStrictEqual(perimeter, 14);
     });
+
+    it("should calculate perimeter if diagonal is parallel to x-axis", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 4, y: 2 });
+      const perimeter = rectangle.perimeter;
+
+      assert.deepStrictEqual(perimeter, 6);
+    });
+
+    it("should calculate perimeter if diagonal is parallel to y-axis", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 1, y: 4 });
+      const perimeter = rectangle.perimeter;
+
+      assert.deepStrictEqual(perimeter, 4);
+    });
+
+    it("should calculate perimeter if length and width are equal", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const perimeter = rectangle.perimeter;
+
+      assert.deepStrictEqual(perimeter, 8);
+    });
   });
 });
