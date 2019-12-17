@@ -12,4 +12,20 @@ describe("Rectangle", function() {
       assert.deepStrictEqual(actualString, expectedString);
     });
   });
+
+  describe("area", function() {
+    it("should return area 0 if length and width is zero", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
+      const area = rectangle.area;
+
+      assert.deepStrictEqual(area, 0);
+    });
+
+    it("should return area if length and width is more than zero", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 7 });
+      const area = rectangle.area;
+
+      assert.deepStrictEqual(area, 10);
+    });
+  });
 });

@@ -2,14 +2,30 @@
 
 const Point = require("./point");
 
+const getDimension = function(pointA, pointC) {
+  const pointB = new Point(pointC.x, pointA.y);
+  const pointD = new Point(pointA.x, pointC.y);
+
+  const length = pointA.findDistanceTo(pointB);
+  const width = pointA.findDistanceTo(pointD);
+
+  return { length, width };
+};
+
 class Rectangle {
   constructor(endA, endB) {
-    this.diagonalEndA = new Point(endA.x, endA.y);
-    this.diagonalEndB = new Point(endB.x, endB.y);
+    this.pointA = new Point(endA.x, endA.y);
+    this.pointC = new Point(endB.x, endB.y);
   }
 
   toString() {
-    return `[Rectangle (${this.diagonalEndA.x},${this.diagonalEndA.y}) to (${this.diagonalEndB.x},${this.diagonalEndB.y})]`;
+    return `[Rectangle (${this.pointA.x},${this.pointA.y}) to (${this.pointC.x},${this.pointC.y})]`;
+  }
+
+  get area() {
+    const { length, width } = getDimension(this.pointA, this.pointC);
+
+    return length * width;
   }
 }
 
