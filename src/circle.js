@@ -37,10 +37,9 @@ class Circle {
   }
 
   covers(point) {
-    return (
-      point.x - this.center.x <= this.radius &&
-      point.y - this.center.y <= this.radius
-    );
+    if (!(point instanceof Point)) return false;
+
+    return (point.x - this.center.x && point.y - this.center.y) <= this.radius;
   }
 }
 

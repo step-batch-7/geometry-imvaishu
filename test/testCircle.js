@@ -127,16 +127,37 @@ describe("Circle", function() {
   describe("moveTo", function() {
     it("should move to center of circle with same radius at given point", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
-      const point = { x: 1, y: 1 };
+      const point = new Point(1, 1);
 
       assert.deepStrictEqual(circle.moveTo(point), new Circle(point, 5));
     });
   });
 
   describe("covers", function() {
+    it("should return false if given point is not instance of Point class", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = { point: { x: 1, y: 2 } };
+
+      assert.isNotOk(circle.covers(point));
+    });
+
     it("should return true if given point is same as center", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
-      const point = { x: 1, y: 2 };
+      const point = new Point(1, 2);
+
+      assert.ok(circle.covers(point));
+    });
+
+    it("should return true if given point is inside of center", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(2, 3);
+
+      assert.ok(circle.covers(point));
+    });
+
+    it("should return true if given point is on circle", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(1, 7);
 
       assert.ok(circle.covers(point));
     });
