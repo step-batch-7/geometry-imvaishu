@@ -131,6 +131,13 @@ describe("Circle", function() {
 
       assert.deepStrictEqual(circle.moveTo(point), new Circle(point, 5));
     });
+
+    it("should return null if given point is not instance of Point", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = { point: { x: 1, y: 2 } };
+
+      assert.isNull(circle.moveTo(point));
+    });
   });
 
   describe("covers", function() {
