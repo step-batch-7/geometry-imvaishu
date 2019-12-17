@@ -188,14 +188,14 @@ describe("Line", function() {
       const line = new Line({ x: 4, y: 0 }, { x: 4, y: 5 });
       const other = new Line({ x: 5, y: 0 }, { x: 5, y: 5 });
 
-      assert.Ok(line.isParallelTo(other));
+      assert.ok(line.isParallelTo(other));
     });
 
     it("should return true if slope of line is -Infinity", function() {
       const line = new Line({ x: 0, y: 0 }, { x: 0, y: 4 });
       const other = new Line({ x: 1, y: 1 }, { x: 1, y: -3 });
 
-      assert.Ok(line.isParallelTo(other));
+      assert.ok(line.isParallelTo(other));
     });
   });
 

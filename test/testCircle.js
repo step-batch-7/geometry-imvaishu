@@ -123,4 +123,13 @@ describe("Circle", function() {
       assert.isNotOk(circle.hasPoint(point));
     });
   });
+
+  describe("moveTo", function() {
+    it("should move to circle of same diameter at given point", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = { x: 1, y: 1 };
+
+      assert.deepStrictEqual(circle.moveTo(point), new Circle(point, 5));
+    });
+  });
 });
