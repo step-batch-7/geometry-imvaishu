@@ -38,10 +38,10 @@ class Rectangle {
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
 
-    const line1 = new Line(this.pointA, this.pointC);
-    const line2 = new Line(other.pointA, other.pointC);
+    const diagonalOfThis = new Line(this.pointA, this.pointC);
+    const diagonalOfOther = new Line(other.pointA, other.pointC);
 
-    return line1.isEqualTo(line2);
+    return diagonalOfThis.isEqualTo(diagonalOfOther);
   }
 }
 

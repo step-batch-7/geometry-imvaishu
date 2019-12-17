@@ -97,9 +97,30 @@ describe("Rectangle", function() {
       assert.isNotOk(rectangle.isEqualTo(other));
     });
 
-    it("should return true if given rectangle's points are equal", function() {
+    it("should return true if given rectangles points are equal", function() {
       const rectangle1 = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 4 });
       const rectangle2 = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 4 });
+
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should return false if both rectangles and points are not equal", function() {
+      const rectangle1 = new Rectangle({ x: 2, y: 3 }, { x: 4, y: 7 });
+      const rectangle2 = new Rectangle({ x: 1, y: 4 }, { x: 3, y: 9 });
+
+      assert.isNotOk(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should validate if equal Rectangles are given with altered pointA and pointC", function() {
+      const rectangle1 = new Rectangle({ x: 2, y: 3 }, { x: 4, y: 7 });
+      const rectangle2 = new Rectangle({ x: 4, y: 7 }, { x: 2, y: 3 });
+
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should give true if points are altered and same", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 5, y: 5 });
+      const rectangle2 = new Rectangle({ x: 5, y: 5 }, { x: 1, y: 1 });
 
       assert.ok(rectangle1.isEqualTo(rectangle2));
     });
