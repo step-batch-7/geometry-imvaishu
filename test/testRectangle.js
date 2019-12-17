@@ -27,5 +27,26 @@ describe("Rectangle", function() {
 
       assert.deepStrictEqual(area, 10);
     });
+
+    it("should calculate area if diagonal is parallel to x-axis", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 4, y: 2 });
+      const area = rectangle.area;
+
+      assert.deepStrictEqual(area, 0);
+    });
+
+    it("should calculate area if diagonal is parallel to y-axis", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 1, y: 4 });
+      const area = rectangle.area;
+
+      assert.deepStrictEqual(area, 0);
+    });
+
+    it("should calculate area if length and width are equal", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const area = rectangle.area;
+
+      assert.deepStrictEqual(area, 4);
+    });
   });
 });
