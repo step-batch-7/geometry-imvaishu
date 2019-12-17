@@ -8,7 +8,7 @@ const arePointsInRange = function(range, value) {
   return value >= sortedRange[0] && value <= sortedRange[1];
 };
 
-const getXAndYOfPoint = function(length, startPoint, endPoint, distance) {
+const getPoint = function(length, startPoint, endPoint, distance) {
   const ratioOfDistance = distance / length;
   const x = (1 - ratioOfDistance) * startPoint.x + ratioOfDistance * endPoint.x;
   const y = (1 - ratioOfDistance) * startPoint.y + ratioOfDistance * endPoint.y;
@@ -62,25 +62,17 @@ class Line {
   }
 
   findX(y) {
-    if (!arePointsInRange([this.endA.y, this.endB.y], y)) {
-      return NaN;
-    }
+    if (!arePointsInRange([this.endA.y, this.endB.y], y)) return NaN;
 
-    if (this.slope === 0) {
-      return this.endA.x;
-    }
+    if (this.slope === 0) return this.endA.x;
 
     return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
-    if (!arePointsInRange([this.endA.x, this.endB.x], x)) {
-      return NaN;
-    }
+    if (!arePointsInRange([this.endA.x, this.endB.x], x)) return NaN;
 
-    if (this.slope === Infinity) {
-      return this.endA.y;
-    }
+    if (this.slope === Infinity) return this.endA.y;
 
     return (x - this.endA.x) * this.slope + this.endA.y;
   }
@@ -107,13 +99,13 @@ class Line {
   findPointFromStart(distance) {
     if (distance > this.length || distance < 0) return null;
 
-    return getXAndYOfPoint(this.length, this.endA, this.endB, distance);
+    return getPoint(this.length, this.endA, this.endB, distance);
   }
 
   findPointFromEnd(distance) {
     if (distance > this.length || distance < 0) return null;
 
-    return getXAndYOfPoint(this.length, this.endB, this.endA, distance);
+    return getPoint(this.length, this.endB, this.endA, distance);
   }
 }
 

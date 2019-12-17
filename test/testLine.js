@@ -7,53 +7,54 @@ describe("Line", function() {
   describe("toString", function() {
     it("should return toString of line", function() {
       let line = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
+      const actualString = line.toString();
       const expectedString = "[Line (1,4) to (3,9)]";
 
-      assert.deepStrictEqual(line.toString(), expectedString);
+      assert.deepStrictEqual(actualString, expectedString);
     });
   });
 
   describe("isEqualTo", function() {
-    it("should return true if lines are equal ", function() {
+    it("should return true if lines are equal and both are instance of line", function() {
       const line = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
       const other = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
 
-      assert.strictEqual(line.isEqualTo(other), true);
+      assert.ok(line.isEqualTo(other));
     });
 
     it("should return false if both are lines and points are not equal", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
       const other = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
 
-      assert.strictEqual(line.isEqualTo(other), false);
+      assert.isNotOk(line.isEqualTo(other));
     });
 
     it("should return false if one is not line and points are equal", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
       const other = { endA: { x: 2, y: 3 }, endB: { x: 4, y: 7 } };
 
-      assert.strictEqual(line.isEqualTo(other), false);
+      assert.isNotOk(line.isEqualTo(other));
     });
 
     it("should return false if one is not line and points are not equal", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
       const other = { endA: { x: 1, y: 4 }, endB: { x: 3, y: 9 } };
 
-      assert.strictEqual(line.isEqualTo(other), false);
+      assert.isNotOk(line.isEqualTo(other));
     });
 
     it("should validate if equal lines are given with altered start and end", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
       const other = new Line({ x: 4, y: 7 }, { x: 2, y: 3 });
 
-      assert.strictEqual(line.isEqualTo(other), true);
+      assert.ok(line.isEqualTo(other));
     });
 
     it("should give true if points are altered", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
       const other = new Line({ x: 5, y: 5 }, { x: 1, y: 1 });
 
-      assert.deepStrictEqual(line.isEqualTo(other), true);
+      assert.ok(line.isEqualTo(other));
     });
   });
 
@@ -124,6 +125,14 @@ describe("Line", function() {
       assert.strictEqual(actualSlope, expectedSlope);
     });
 
+    it("should return Infinity slope of line if slope is -Infinity  ", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 0, y: -1 });
+      const actualSlope = line.slope;
+      const expectedSlope = Infinity;
+
+      assert.strictEqual(actualSlope, expectedSlope);
+    });
+
     it("should calculate slope of line if all points are zero ", function() {
       const line = new Line({ x: 0, y: 0 }, { x: 0, y: 0 });
       const actualSlope = line.slope;
@@ -140,53 +149,53 @@ describe("Line", function() {
   });
 
   describe("isParallelTo", function() {
-    it("should return true if two lines are parallel", function() {
+    it("should return true if two lines are parallel and both are instance of line", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 4, y: 7 });
       const other = new Line({ x: 9, y: 11 }, { x: 4, y: 1 });
 
-      assert.strictEqual(line.isParallelTo(other), true);
+      assert.ok(line.isParallelTo(other));
     });
 
     it("should return false if two lines are not parallel", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
       const other = new Line({ x: 9, y: 11 }, { x: 4, y: 1 });
 
-      assert.strictEqual(line.isParallelTo(other), false);
+      assert.isNotOk(line.isParallelTo(other));
     });
 
-    it("should return false if two lines are overlapping", function() {
+    it("should return false if two lines are overlapping and start and end points are same", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
       const other = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
 
-      assert.strictEqual(line.isParallelTo(other), false);
+      assert.isNotOk(line.isParallelTo(other));
     });
 
     it("should return false if two lines are overlapping and start and end points are different", function() {
       const line = new Line({ x: 2, y: 4 }, { x: 4, y: 8 });
       const other = new Line({ x: 1, y: 2 }, { x: 3, y: 6 });
 
-      assert.strictEqual(line.isParallelTo(other), false);
+      assert.isNotOk(line.isParallelTo(other));
     });
 
-    it("should return false if one is not line", function() {
+    it("should return false if one is not instance of line", function() {
       const line = new Line({ x: 2, y: 3 }, { x: 5, y: 7 });
       const other = { endA: { x: 2, y: 3 }, endB: { x: 5, y: 7 } };
 
-      assert.strictEqual(line.isParallelTo(other), false);
+      assert.isNotOk(line.isParallelTo(other));
     });
 
     it("should return true if lines are vertical", function() {
       const line = new Line({ x: 4, y: 0 }, { x: 4, y: 5 });
       const other = new Line({ x: 5, y: 0 }, { x: 5, y: 5 });
 
-      assert.strictEqual(line.isParallelTo(other), true);
+      assert.Ok(line.isParallelTo(other));
     });
 
     it("should return true if slope of line is -Infinity", function() {
       const line = new Line({ x: 0, y: 0 }, { x: 0, y: 4 });
       const other = new Line({ x: 1, y: 1 }, { x: 1, y: -3 });
 
-      assert.strictEqual(line.isParallelTo(other), true);
+      assert.Ok(line.isParallelTo(other));
     });
   });
 

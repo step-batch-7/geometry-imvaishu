@@ -15,14 +15,14 @@ describe("Point", function() {
   });
 
   describe("visit", function() {
-    it("should visit the function with point x and y", function() {
+    it("should visit the function with point x and y on given action", function() {
       const point = new Point(1, 2);
       const action = (x, y) => x + y;
 
       assert.strictEqual(point.visit(action), 3);
     });
 
-    it("should visit the other function with point x and y", function() {
+    it("should visit the other function with point x and y on given action", function() {
       const point = new Point(4, 2);
       const action = (x, y) => x * y;
 
@@ -33,28 +33,28 @@ describe("Point", function() {
   describe("clone", function() {
     it("should return new point but with different reference", function() {
       const point = new Point(1, 2);
-      const newPoint = point.clone();
+      const clonedPoint = point.clone();
 
-      assert.deepStrictEqual(newPoint, point);
+      assert.deepStrictEqual(clonedPoint, point);
     });
   });
 
   describe("isEqualTo", function() {
-    it("should return true if points are equal", function() {
+    it("should return true if points are equal and both are points", function() {
       const point = new Point(1, 2);
       const other = new Point(1, 2);
 
       assert.strictEqual(point.isEqualTo(other), true);
     });
 
-    it("should return false if points are not equal", function() {
+    it("should return false if points are not equal and both are points", function() {
       const point = new Point(1, 2);
       const other = new Point(2, 2);
 
       assert.strictEqual(point.isEqualTo(other), false);
     });
 
-    it("should return false if one is not point and points are equal", function() {
+    it("should return false if one is not instance of point and points are equal", function() {
       const point = new Point(1, 2);
       const other = { Point: { x: 1, y: 2 } };
 
