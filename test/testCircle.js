@@ -125,11 +125,20 @@ describe("Circle", function() {
   });
 
   describe("moveTo", function() {
-    it("should move to circle of same diameter at given point", function() {
+    it("should move to center of circle with same radius at given point", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
       const point = { x: 1, y: 1 };
 
       assert.deepStrictEqual(circle.moveTo(point), new Circle(point, 5));
+    });
+  });
+
+  describe("covers", function() {
+    it("should return true if given point is same as center", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = { x: 1, y: 2 };
+
+      assert.ok(circle.covers(point));
     });
   });
 });

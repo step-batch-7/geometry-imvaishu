@@ -35,6 +35,13 @@ class Circle {
   moveTo(point) {
     return new Circle(point, this.radius);
   }
+
+  covers(point) {
+    return (
+      point.x - this.center.x <= this.radius &&
+      point.y - this.center.y <= this.radius
+    );
+  }
 }
 
 module.exports = Circle;
