@@ -161,5 +161,19 @@ describe("Circle", function() {
 
       assert.ok(circle.covers(point));
     });
+
+    it("should return false if given point is not inside of circle", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(6, 9);
+
+      assert.isNotOk(circle.covers(point));
+    });
+
+    it("should return false if x point is inside but y point is not inside of circle", function() {
+      const circle = new Circle({ x: 1, y: 2 }, 5);
+      const point = new Point(1, 8);
+
+      assert.isNotOk(circle.covers(point));
+    });
   });
 });
