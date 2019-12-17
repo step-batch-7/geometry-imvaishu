@@ -1,6 +1,7 @@
 "use strict";
 
 const Point = require("./point");
+const Line = require("./line");
 
 const getDimension = function(pointA, pointC) {
   const pointB = new Point(pointC.x, pointA.y);
@@ -32,6 +33,15 @@ class Rectangle {
     const { length, width } = getDimension(this.pointA, this.pointC);
 
     return 2 * (length + width);
+  }
+
+  isEqualTo(other) {
+    if (!(other instanceof Rectangle)) return false;
+
+    const line1 = new Line(this.pointA, this.pointC);
+    const line2 = new Line(other.pointA, other.pointC);
+
+    return line1.isEqualTo(line2);
   }
 }
 

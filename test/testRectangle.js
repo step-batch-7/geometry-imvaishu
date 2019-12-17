@@ -86,4 +86,22 @@ describe("Rectangle", function() {
       assert.deepStrictEqual(perimeter, 8);
     });
   });
+
+  describe("isEqualTo", function() {
+    it("should return false if given rectangle is not instance of Rectangle class", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const other = {
+        rectangle: { pointA: { x: 1, y: 2 }, pointC: { x: 3, y: 4 } }
+      };
+
+      assert.isNotOk(rectangle.isEqualTo(other));
+    });
+
+    it("should return true if given rectangle's points are equal", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const rectangle2 = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 4 });
+
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+  });
 });
