@@ -12,6 +12,16 @@ describe("Circle", function() {
 
       assert.strictEqual(actualString, expectedToString);
     });
+
+    it("should not change properties of circle and toString representation of Circle class", function() {
+      let center = { x: 1, y: 2 };
+      const circle = new Circle(center, 5);
+      circle.center = { x: 3, y: 4 };
+      const actualString = circle.toString();
+      const expectedToString = "[Circle @(1,2) radius 5]";
+
+      assert.strictEqual(actualString, expectedToString);
+    });
   });
 
   describe("isEqualTo", function() {

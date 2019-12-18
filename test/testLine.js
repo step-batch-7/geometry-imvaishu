@@ -12,6 +12,16 @@ describe("Line", function() {
 
       assert.deepStrictEqual(actualString, expectedString);
     });
+
+    it("should not change properties of line and return toString of line", function() {
+      let line = new Line({ x: 1, y: 4 }, { x: 3, y: 9 });
+      line.endA = { x: 2, y: 6 };
+      line.endB = { x: 8, y: 0 };
+      const actualString = line.toString();
+      const expectedString = "[Line (1,4) to (3,9)]";
+
+      assert.deepStrictEqual(actualString, expectedString);
+    });
   });
 
   describe("isEqualTo", function() {

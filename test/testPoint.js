@@ -12,6 +12,15 @@ describe("Point", function() {
 
       assert.deepStrictEqual(point.toString(), expectedString);
     });
+
+    it("should  not change properties of point and return toString of point", function() {
+      const point = new Point(1, 2);
+      point.x = 3;
+      point.y = 8;
+      const expectedString = "[Point @(1,2)]";
+
+      assert.deepStrictEqual(point.toString(), expectedString);
+    });
   });
 
   describe("visit", function() {

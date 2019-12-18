@@ -12,6 +12,18 @@ describe("Rectangle", function() {
 
       assert.deepStrictEqual(actualString, expectedString);
     });
+
+    it("should not change properties of rectangle and toString of rectangle", function() {
+      const pointA = { x: 1, y: 1 };
+      const pointC = { x: 2, y: 3 };
+      const rectangle = new Rectangle(pointA, pointC);
+      rectangle.pointA = { x: 1, y: 2 };
+      rectangle.pointC = { x: 5, y: 9 };
+      const actualString = rectangle.toString();
+      const expectedString = "[Rectangle (1,1) to (2,3)]";
+
+      assert.deepStrictEqual(actualString, expectedString);
+    });
   });
 
   describe("area", function() {

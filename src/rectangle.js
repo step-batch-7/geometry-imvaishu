@@ -40,6 +40,11 @@ class Rectangle {
   constructor(endA, endB) {
     this.pointA = new Point(endA.x, endA.y);
     this.pointC = new Point(endB.x, endB.y);
+
+    Object.defineProperties(this, {
+      pointA: { writable: false },
+      pointC: { writable: false }
+    });
   }
 
   toString() {
