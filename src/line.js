@@ -2,7 +2,7 @@
 
 const Point = require("./point.js");
 
-const arePointsInRange = function(range, value) {
+const isValueInRange = function(range, value) {
   const sortedRange = range.sort((a, b) => a - b);
 
   return value >= sortedRange[0] && value <= sortedRange[1];
@@ -67,7 +67,7 @@ class Line {
   }
 
   findX(y) {
-    if (!arePointsInRange([this.endA.y, this.endB.y], y)) return NaN;
+    if (!isValueInRange([this.endA.y, this.endB.y], y)) return NaN;
 
     if (this.slope === 0) return this.endA.x;
 
@@ -75,7 +75,7 @@ class Line {
   }
 
   findY(x) {
-    if (!arePointsInRange([this.endA.x, this.endB.x], x)) return NaN;
+    if (!isValueInRange([this.endA.x, this.endB.x], x)) return NaN;
 
     if (this.slope === Infinity) return this.endA.y;
 

@@ -3,7 +3,7 @@
 const Point = require("./point");
 const Line = require("./line");
 
-const arePointsInRange = function(range, value) {
+const isValueBetweenRange = function(range, value) {
   const sortedRange = range.sort((a, b) => a - b);
 
   return value > sortedRange[0] && value < sortedRange[1];
@@ -89,8 +89,8 @@ class Rectangle {
     if (!(point instanceof Point)) return false;
 
     return (
-      arePointsInRange([this.pointA.x, this.pointC.x], point.x) &&
-      arePointsInRange([this.pointA.y, this.pointC.y], point.y)
+      isValueBetweenRange([this.pointA.x, this.pointC.x], point.x) &&
+      isValueBetweenRange([this.pointA.y, this.pointC.y], point.y)
     );
   }
 }
