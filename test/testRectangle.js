@@ -192,5 +192,26 @@ describe("Rectangle", function() {
 
       assert.ok(rectangle.covers(point));
     });
+
+    it("should return false if given point is on any side of rectangle", function() {
+      const rectangle = new Rectangle({ x: 4, y: 4 }, { x: 0, y: 0 });
+      const point = new Point(0, 4);
+
+      assert.notOk(rectangle.covers(point));
+    });
+
+    it("should return false if given point is not inside of rectangle", function() {
+      const rectangle = new Rectangle({ x: 4, y: 4 }, { x: 0, y: 0 });
+      const point = new Point(5, 1);
+
+      assert.isNotOk(rectangle.covers(point));
+    });
+
+    it("should return false if x point is inside but y point is not inside of rectangle", function() {
+      const rectangle = new Rectangle({ x: 4, y: 4 }, { x: 0, y: 0 });
+      const point = new Point(0, 8);
+
+      assert.isNotOk(rectangle.covers(point));
+    });
   });
 });
