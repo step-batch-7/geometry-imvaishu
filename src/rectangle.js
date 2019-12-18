@@ -9,9 +9,15 @@ const arePointsInRange = function(range, value) {
   return value > sortedRange[0] && value < sortedRange[1];
 };
 
-const getDimension = function(pointA, pointC) {
+const getPointBAndD = function(pointA, pointC) {
   const pointB = new Point(pointC.x, pointA.y);
   const pointD = new Point(pointA.x, pointC.y);
+
+  return { pointB, pointD };
+};
+
+const getDimension = function(pointA, pointC) {
+  const { pointB, pointD } = getPointBAndD(pointA, pointC);
 
   const length = pointA.findDistanceTo(pointB);
   const width = pointA.findDistanceTo(pointD);
@@ -20,10 +26,12 @@ const getDimension = function(pointA, pointC) {
 };
 
 const getSides = function(pointA, pointC) {
-  const AB = new Line(pointA, new Point(pointC.x, pointA.y));
-  const BC = new Line(new Point(pointC.x, pointA.y), pointC);
-  const CD = new Line(pointC, new Point(pointA.x, pointC.y));
-  const AD = new Line(pointA, new Point(pointA.x, pointC.y));
+  const { pointB, pointD } = getPointBAndD(pointA, pointC);
+
+  const AB = new Line(pointA, pointB);
+  const BC = new Line(pointB, pointC);
+  const CD = new Line(pointC, pointD);
+  const AD = new Line(pointA, pointD);
 
   return [AB, BC, CD, AD];
 };
@@ -52,11 +60,16 @@ class Rectangle {
 
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
+    const { pointB, pointD } = getPointBAndD(this.pointA, this.pointC);
 
     const diagonalOfThis = new Line(this.pointA, this.pointC);
+    const alterDiagonalOfThis = new Line(pointB, pointD);
     const diagonalOfOther = new Line(other.pointA, other.pointC);
 
-    return diagonalOfThis.isEqualTo(diagonalOfOther);
+    return (
+      diagonalOfThis.isEqualTo(diagonalOfOther) ||
+      alterDiagonalOfThis.isEqualTo(diagonalOfOther)
+    );
   }
 
   hasPoint(other) {

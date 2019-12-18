@@ -125,6 +125,13 @@ describe("Rectangle", function() {
 
       assert.ok(rectangle1.isEqualTo(rectangle2));
     });
+
+    it("should give true if diagonal is altered and rectangle are same", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 4 });
+      const rectangle2 = new Rectangle({ x: 0, y: 4 }, { x: 4, y: 0 });
+
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
   });
 
   describe("hasPoint", function() {
