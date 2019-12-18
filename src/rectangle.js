@@ -3,6 +3,12 @@
 const Point = require("./point");
 const Line = require("./line");
 
+const arePointsInRange = function(range, value) {
+  const sortedRange = range.sort((a, b) => a - b);
+
+  return value > sortedRange[0] && value < sortedRange[1];
+};
+
 const getDimension = function(pointA, pointC) {
   const pointB = new Point(pointC.x, pointA.y);
   const pointD = new Point(pointA.x, pointC.y);
@@ -59,6 +65,15 @@ class Rectangle {
     const sides = getSides(this.pointA, this.pointC);
 
     return sides.some(side => side.hasPoint(other));
+  }
+
+  covers(point) {
+    if (!(point instanceof Point)) return false;
+
+    return (
+      arePointsInRange([this.pointA.x, this.pointC.x], point.x) &&
+      arePointsInRange([this.pointA.y, this.pointC.y], point.y)
+    );
   }
 }
 

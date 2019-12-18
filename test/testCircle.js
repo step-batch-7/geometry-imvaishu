@@ -162,11 +162,11 @@ describe("Circle", function() {
       assert.ok(circle.covers(point));
     });
 
-    it("should return true if given point is on circle", function() {
+    it("should return false if given point is on circumference", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
       const point = new Point(1, 7);
 
-      assert.ok(circle.covers(point));
+      assert.notOk(circle.covers(point));
     });
 
     it("should return false if given point is not inside of circle", function() {

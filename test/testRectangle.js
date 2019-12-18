@@ -170,4 +170,27 @@ describe("Rectangle", function() {
       assert.notOk(rectangle.hasPoint(point));
     });
   });
+
+  describe("covers", function() {
+    it("should return false if if given point is not instance of point", function() {
+      const rectangle = new Rectangle({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const other = { point: { x: 1, y: 2 } };
+
+      assert.isNotOk(rectangle.covers(other));
+    });
+
+    it("gives true if given point is inside the rectangle and of same instance", function() {
+      const rectangle = new Rectangle({ x: 5, y: 5 }, { x: 0, y: 0 });
+      const point = new Point(3, 3);
+
+      assert.ok(rectangle.covers(point));
+    });
+
+    it("should return true if given point is at midpoint of rectangle", function() {
+      const rectangle = new Rectangle({ x: 4, y: 4 }, { x: 0, y: 0 });
+      const point = new Point(2, 2);
+
+      assert.ok(rectangle.covers(point));
+    });
+  });
 });
